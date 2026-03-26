@@ -1,0 +1,226 @@
+<div class="absolute inset-0 z-[100] flex justify-center overflow-hidden"
+  style="background: rgba(0, 0, 0, 0.6); opacity: 1; transform: none;">
+  <div class="relative w-full max-w-[450px] h-full overflow-hidden">
+    <div class="relative w-full h-full flex flex-col overflow-hidden" style="background: rgb(13, 17, 23);">
+      <div class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 pt-safe"
+        style="padding-top: 16px; padding-bottom: 12px; background: linear-gradient(rgba(13, 17, 23, 0.95) 0%, transparent 100%);">
+        <div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4 text-emerald-400">
+            <path
+              d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+            </path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <h2 class="text-lg font-bold tracking-tight"
+            style="background: linear-gradient(135deg, rgb(240, 239, 255) 0%, rgba(52, 211, 153, 0.9) 100%) text; -webkit-text-fill-color: transparent;">
+            Viaje en el Mapa</h2>
+        </div>
+        <div class="flex items-center gap-2"><button
+            class="w-9 h-9 rounded-full flex items-center justify-center text-white transition-all backdrop-blur-md bg-white/[0.06] hover:bg-white/[0.12] border border-white/10"><svg
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-x w-4 h-4">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg></button></div>
+      </div>
+      <div class="absolute inset-0 z-0">
+        <div class="relative w-full h-full">
+          <div
+            class="w-full h-full leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom"
+            style="background: rgb(13, 17, 23); position: relative;" tabindex="0">
+            <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(-151px, 90.0493px, 0px);">
+              <div class="leaflet-pane leaflet-tile-pane">
+                <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+                  <div class="leaflet-tile-container leaflet-zoom-animated"
+                    style="z-index: 20; transform: translate3d(219px, 149px, 0px) scale(1);"><img alt=""
+                      src="https://a.basemaps.cartocdn.com/dark_all/0/0/0@2x.png"
+                      class="leaflet-tile leaflet-tile-loaded"
+                      style="width: 256px; height: 256px; transform: translate3d(-148px, -4px, 0px); opacity: 1;"><img
+                      alt="" src="https://a.basemaps.cartocdn.com/dark_all/0/0/0@2x.png"
+                      class="leaflet-tile leaflet-tile-loaded"
+                      style="width: 256px; height: 256px; transform: translate3d(108px, -4px, 0px); opacity: 1;"><img
+                      alt="" src="https://a.basemaps.cartocdn.com/dark_all/0/0/0@2x.png"
+                      class="leaflet-tile leaflet-tile-loaded"
+                      style="width: 256px; height: 256px; transform: translate3d(364px, -4px, 0px); opacity: 1;"></div>
+                </div>
+              </div>
+              <div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none" class="leaflet-zoom-animated"
+                  width="540" height="876" viewBox="106 -163 540 876"
+                  style="transform: translate3d(106px, -163px, 0px);">
+                  <g>
+                    <path class="leaflet-interactive" stroke="rgba(52,211,153,0.7)" stroke-opacity="0.85"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"
+                      d="M422 290L420 293L424 290L457 233" stroke-dasharray="8, 6"></path>
+                  </g>
+                </svg></div>
+              <div class="leaflet-pane leaflet-shadow-pane"></div>
+              <div class="leaflet-pane leaflet-marker-pane">
+                <div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button"
+                  style="margin-left: -44px; margin-top: -92px; width: 88px; height: 92px; transform: translate3d(422px, 290px, 0px); z-index: 290;">
+                  <div style="
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 5px 5px 22px 5px;
+        border-radius: 3px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.3);
+        cursor: pointer;
+        width: 78px;
+        transition: transform 0.15s;
+      " onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='scale(1)'">
+                    <div style="width: 68px; height: 56px; overflow: hidden; background: #111; border-radius: 1px;">
+                      <img src="/images/shared/approved/1.webp"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                    </div>
+                    <div style="
+          font-size: 7.5px;
+          font-weight: 700;
+          color: #222;
+          text-align: center;
+          padding-top: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 68px;
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+        ">São Paulo — donde todo comenzó</div>
+                  </div>
+                </div>
+                <div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button"
+                  style="margin-left: -44px; margin-top: -92px; width: 88px; height: 92px; transform: translate3d(420px, 293px, 0px); z-index: 293; outline-style: none;">
+                  <div style="
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 5px 5px 22px 5px;
+        border-radius: 3px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.3);
+        cursor: pointer;
+        width: 78px;
+        transition: transform 0.15s;
+      " onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='scale(1)'">
+                    <div style="width: 68px; height: 56px; overflow: hidden; background: #111; border-radius: 1px;">
+                      <img src="/images/shared/approved/3.webp"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                    </div>
+                    <div style="
+          font-size: 7.5px;
+          font-weight: 700;
+          color: #222;
+          text-align: center;
+          padding-top: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 68px;
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+        ">Florianópolis — la isla del amor</div>
+                  </div>
+                </div>
+                <div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button"
+                  style="margin-left: -44px; margin-top: -92px; width: 88px; height: 92px; transform: translate3d(424px, 290px, 0px); z-index: 290;">
+                  <div style="
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 5px 5px 22px 5px;
+        border-radius: 3px;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.3);
+        cursor: pointer;
+        width: 78px;
+        transition: transform 0.15s;
+      " onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='scale(1)'">
+                    <div style="width: 68px; height: 56px; overflow: hidden; background: #111; border-radius: 1px;">
+                      <img src="/images/shared/approved/5.webp"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                    </div>
+                    <div style="
+          font-size: 7.5px;
+          font-weight: 700;
+          color: #222;
+          text-align: center;
+          padding-top: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 68px;
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+        ">Río de Janeiro — la ciudad maravillosa</div>
+                  </div>
+                </div>
+                <div class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" tabindex="0" role="button"
+                  style="margin-left: -44px; margin-top: -92px; width: 88px; height: 92px; transform: translate3d(457px, 233px, 0px); z-index: 233;">
+                  <div
+                    style="display: inline-flex; flex-direction: column; align-items: center; background: white; padding: 5px 5px 22px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.65) 0px 6px 24px, rgba(0, 0, 0, 0.3) 0px 1px 4px; cursor: pointer; width: 78px; transition: transform 0.15s; transform: scale(1);"
+                    onmouseenter="this.style.transform='scale(1.08)'" onmouseleave="this.style.transform='scale(1)'">
+                    <div style="width: 68px; height: 56px; overflow: hidden; background: #111; border-radius: 1px;">
+                      <img src="/images/shared/approved/2.webp"
+                        style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+                    </div>
+                    <div style="
+          font-size: 7.5px;
+          font-weight: 700;
+          color: #222;
+          text-align: center;
+          padding-top: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 68px;
+          font-family: 'Helvetica Neue', Arial, sans-serif;
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+        ">París — la ville de l'amour</div>
+                  </div>
+                </div>
+              </div>
+              <div class="leaflet-pane leaflet-tooltip-pane"></div>
+              <div class="leaflet-pane leaflet-popup-pane"></div>
+              <div class="leaflet-proxy leaflet-zoom-animated"
+                style="transform: translate3d(49px, 129.951px, 0px) scale(0.5);"></div>
+            </div>
+            <div class="leaflet-control-container">
+              <div class="leaflet-top leaflet-left"></div>
+              <div class="leaflet-top leaflet-right"></div>
+              <div class="leaflet-bottom leaflet-left"></div>
+              <div class="leaflet-bottom leaflet-right">
+                <div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com"
+                    title="A JavaScript library for interactive maps"><svg aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"
+                      class="leaflet-attribution-flag">
+                      <path fill="#4C7BE1" d="M0 0h12v4H0z"></path>
+                      <path fill="#FFD500" d="M0 4h12v3H0z"></path>
+                      <path fill="#E0BC00" d="M0 7h12v1H0z"></path>
+                    </svg> Leaflet</a> <span aria-hidden="true">|</span> © <a
+                    href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a
+                    href="https://carto.com/attributions">CARTO</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-4 py-2 rounded-full backdrop-blur-md border border-white/10"
+        style="background: rgba(0, 0, 0, 0.6); opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-3.5 h-3.5 text-emerald-400">
+          <path
+            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+          </path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg><span class="text-white/70 text-xs font-medium">4 lugares</span><span class="text-white/40 text-xs">· toca
+          para explorar</span></div>
+    </div>
+  </div>
+</div>
