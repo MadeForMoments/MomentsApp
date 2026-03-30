@@ -37,12 +37,7 @@
 
         <!-- Mini reproductor → abre MediaPlayer -->
         <div @click="openModal('player')">
-          <SpotifyMiniPlayer
-            :title="data.nowPlaying.title"
-            :artist="data.nowPlaying.artist"
-            :image="data.nowPlaying.image"
-            :progress="data.nowPlaying.progress"
-          />
+          <SpotifyMiniPlayer />
         </div>
       </div>
 
@@ -51,13 +46,6 @@
       <!-- Reproductor expandido -->
       <SpotifyMediaPlayer
         :show="activeModal === 'player'"
-        :track="{
-          title: data.nowPlaying.title,
-          artist: 'Noah Kahan',
-          image: data.nowPlaying.image,
-          duration: '4:47',
-          progress: data.nowPlaying.progress,
-        }"
         :artist-name="data.artistName"
         context="Populares"
         :lyrics="data.aboutDescription"
@@ -127,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, h } from 'vue'
+import { ref, h, watch } from 'vue'
 
 // ─── Componentes base ──────────────────────────────────────────────────────
 import SpotifyNavBar from './components/SpotifyNavBar.vue'
@@ -155,6 +143,8 @@ import SpotifyViajeEnMapa from './modals/SpotifyViajeEnMapa.vue'
 import type { SeeAlsoItem } from './components/SpotifySeeAlso.vue'
 import type { CuriosidadSlide } from './modals/SpotifyCuriosidades.vue'
 import { mapPlaces as configMapPlaces, mapConfig } from '@/data/mapPlacesConfig'
+import { usePlayerStore } from '@/stores/playerStore'
+import { useYouTubePlayer } from '@/composables/useYouTubePlayer'
 
 // ─── Imágenes ─────────────────────────────────────────────────────────────
 import img1 from '@/assets/images/1.webp'
@@ -176,6 +166,36 @@ function closeModal() {
   activeModal.value = null
 }
 
+// ─── Player store + YouTube orchestration ────────────────────────────────
+const store = usePlayerStore()
+const yt = useYouTubePlayer()
+
+// Load YT script in background immediately on app mount
+yt.init()
+
+// Track which index was last sent to YouTube to avoid reloading the same video
+let _lastYtIndex = -1
+
+watch(
+  () => [store.currentIndex, store.isPlaying] as const,
+  ([idx, playing]) => {
+    if (playing) {
+      const track = store.tracks[idx]
+      if (track?.youtubeId) {
+        if (idx !== _lastYtIndex) {
+          _lastYtIndex = idx
+          yt.loadVideo(track.youtubeId)
+        } else {
+          yt.playVideo()
+        }
+      }
+    } else {
+      yt.pauseVideo()
+    }
+  },
+)
+
+// Bootstrap store with the track list once data is ready
 // ─── Datos centralizados ──────────────────────────────────────────────────
 const data = {
   userInitials: 'HZ',
@@ -196,12 +216,48 @@ const data = {
       image: img1,
       duration: '2:47',
       active: true,
+      youtubeId: 'I8cXggH05nU', //  Jay Kalyl - Contigo X 100pre
     },
-    { index: 2, title: 'Memoria 2', artist: 'Noah Kahan', image: img2, duration: '3:15' },
-    { index: 3, title: 'Memoria 3', artist: 'Noah Kahan', image: img3, duration: '4:01' },
-    { index: 4, title: 'Memoria 4', artist: 'Noah Kahan', image: img4, duration: '2:58' },
-    { index: 5, title: 'Memoria 5', artist: 'Noah Kahan', image: img5, duration: '3:33' },
-    { index: 6, title: 'Memoria 6', artist: 'Noah Kahan', image: img6, duration: '3:44' },
+    {
+      index: 2,
+      title: 'Memoria 2',
+      artist: 'Noah Kahan',
+      image: img2,
+      duration: '3:15',
+      youtubeId: '7L-EhWRuulM', // Pedacito de Cielo - Jay Kalyl
+    },
+    {
+      index: 3,
+      title: 'Memoria 3',
+      artist: 'Noah Kahan',
+      image: img3,
+      duration: '4:01',
+      youtubeId: 'jqONDyG6jz8', // Jay Kalyl - Lunes (Video Oficial)
+    },
+    {
+      index: 4,
+      title: 'Memoria 4',
+      artist: 'Noah Kahan',
+      image: img4,
+      duration: '2:58',
+      youtubeId: 'cNGjD0VG4R8', // Ed Sheeran - Perfect
+    },
+    {
+      index: 5,
+      title: 'Memoria 5',
+      artist: 'Noah Kahan',
+      image: img5,
+      duration: '3:33',
+      youtubeId: 'KKQl-pIRQMY', // Ed Sheeran - Photograph
+    },
+    {
+      index: 6,
+      title: 'Memoria 6',
+      artist: 'Noah Kahan',
+      image: img6,
+      duration: '3:44',
+      youtubeId: '',
+    },
   ],
   aboutDescription:
     'Eres la razón de mi sonrisa cada día. Desde el primer momento que te vi, supe que mi vida nunca volvería a ser la misma. Cada segundo a tu lado es un regalo que guardo en el corazón. Te amo más de lo que las palabras pueden expresar.',
@@ -464,6 +520,9 @@ const data = {
   },
   mapPlaces: configMapPlaces,
 }
+
+// Initialize player store with the track list
+store.setTracks(data.tracks)
 
 // ─── Slides de Curiosidades (render functions) ────────────────────────────
 // Sol (Verano)

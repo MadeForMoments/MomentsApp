@@ -44,6 +44,7 @@
                     rgba(52, 211, 153, 0.9) 100%
                   );
                   -webkit-background-clip: text;
+                  background-clip: text;
                   -webkit-text-fill-color: transparent;
                 "
               >
@@ -252,9 +253,6 @@
               </button>
             </div>
           </Transition>
-
-          <!-- Audio (oculto) -->
-          <audio ref="audioRef" loop preload="none" />
         </div>
       </div>
     </div>
@@ -266,7 +264,7 @@ import { ref, computed, watch } from 'vue'
 import { LMap, LTileLayer, LMarker, LPolyline } from '@vue-leaflet/vue-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { mapMusic } from '@/data/mapPlacesConfig'
+import { useYouTubePlayer } from '@/composables/useYouTubePlayer'
 
 export interface MapPlaceConfig {
   label: string
@@ -275,7 +273,7 @@ export interface MapPlaceConfig {
   lng: number
   date?: string
   description?: string
-  music?: string
+  youtubeId?: string
 }
 
 const props = defineProps<{
@@ -288,7 +286,7 @@ const props = defineProps<{
 defineEmits<{ close: [] }>()
 
 const mapRef = ref()
-const audioRef = ref<HTMLAudioElement>()
+const yt = useYouTubePlayer()
 const selectedPlace = ref<number | null>(null)
 
 const center = computed(() => props.center ?? ([-15, -50] as [number, number]))
@@ -349,32 +347,18 @@ function closeStory() {
   selectedPlace.value = null
 }
 
-// ─── Music ────────────────────────────────────────────────────────────────
+// ─── YouTube ambient music ───────────────────────────────────────────────
 watch(selectedPlace, (idx) => {
-  const audio = audioRef.value
-  if (!audio) return
-
   if (idx === null) {
-    audio.pause()
-    audio.src = ''
+    yt.pauseVideo()
     return
   }
-
   const place = props.places[idx]
-  if (!place) return
-  const src = place.music ?? mapMusic?.src ?? null
-  if (!src) {
-    audio.pause()
-    audio.src = ''
+  if (!place?.youtubeId) {
+    yt.pauseVideo()
     return
   }
-
-  if (audio.src !== src) {
-    audio.src = src
-  }
-  audio.play().catch(() => {
-    /* autoplay blocked – silently ignore */
-  })
+  yt.loadVideo(place.youtubeId)
 })
 
 // Stop music and reset when the modal closes
@@ -383,11 +367,7 @@ watch(
   (visible) => {
     if (!visible) {
       selectedPlace.value = null
-      const audio = audioRef.value
-      if (audio) {
-        audio.pause()
-        audio.src = ''
-      }
+      yt.pauseVideo()
     }
   },
 )

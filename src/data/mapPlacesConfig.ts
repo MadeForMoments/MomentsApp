@@ -16,16 +16,14 @@ export interface MapPlaceConfig {
   /** Short description shown in the story overlay */
   description?: string
   /**
-   * Optional per-place music file path (relative to /public).
-   * Falls back to mapMusic.src if not set.
-   * Example: "/music/sao-paulo.mp3"
+   * Optional YouTube video ID to play as ambient music when the story is open.
+   * Example: "dQw4w9WgXcQ"
    */
-  music?: string
+  youtubeId?: string
 }
 
-/** Global fallback music played when a place doesn't define its own `music` */
-export const mapMusic: { src: string } | null = null
-// Example: export const mapMusic = { src: '/music/journey.mp3' }
+// ─── (legacy stub kept for import compatibility — not used anymore) ────────
+export const mapMusic: null = null
 
 /** Initial map center and zoom level — adjust to frame your locations */
 export const mapConfig = {
